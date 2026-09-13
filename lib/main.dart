@@ -35,6 +35,18 @@ class _MyHomePageState extends State<MyHomePage> {
     Estudiante('Armando', '20245138', true),
     Estudiante('José', '20256589', false),
     Estudiante('Gerardo', '20246378', false),
+    Estudiante('Ana', '20247641', false),
+    Estudiante('Beatriz', '20258732', false),
+    Estudiante('Carlos', '20249853', false),
+    Estudiante('Daniela', '20250964', false),
+    Estudiante('Eduardo', '20251075', false),
+    Estudiante('Fernanda', '20252186', false),
+    Estudiante('Gabriel', '20253297', false),
+    Estudiante('Hector', '20254308', false),
+    Estudiante('Isabel', '20255419', false),
+    Estudiante('Javier', '20256520', false),
+    Estudiante('Karen', '20257631', false),
+    Estudiante('Luis', '20258742', false),
   ];
 
   @override
