@@ -6,7 +6,7 @@ class Estudiante {
   final String nombre;
   final String carnet;
   bool asistencia = false;
-  Estudiante(this.nombre,this.carnet,this.asistencia);
+  Estudiante(this.nombre, this.carnet, this.asistencia);
 
   @override
   String toString() {
@@ -16,7 +16,7 @@ class Estudiante {
 
 ///Widget con estado de la lista de asistencia
 class Tabla extends StatefulWidget {
-  const Tabla ({super.key, required this.estudiantes});
+  const Tabla({super.key, required this.estudiantes});
   final List<Estudiante> estudiantes;
 
   @override
@@ -31,18 +31,29 @@ class _EstadoTabla extends State<Tabla> {
   void initState() {
     super.initState();
 
-    asistencias = widget.estudiantes.where((estudiante)=>estudiante.asistencia).length;
+    asistencias = widget.estudiantes
+        .where((estudiante) => estudiante.asistencia)
+        .length;
   }
 
   void _refrescarEstado() {
     setState(() {
-      asistencias = widget.estudiantes.where((estudiante)=>estudiante.asistencia).length;
+      asistencias = widget.estudiantes
+          .where((estudiante) => estudiante.asistencia)
+          .length;
     });
   }
 
   void _reiniciarEstado() {
-    for(var i = 0; i < widget.estudiantes.length; i++) {
+    for (var i = 0; i < widget.estudiantes.length; i++) {
       widget.estudiantes[i].asistencia = false;
+    }
+    _refrescarEstado();
+  }
+
+  void _marcarTodos() {
+    for (var i = 0; i < widget.estudiantes.length; i++) {
+      widget.estudiantes[i].asistencia = true;
     }
     _refrescarEstado();
   }
@@ -50,12 +61,14 @@ class _EstadoTabla extends State<Tabla> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          spacing: 5,
-          children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 5,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Asistencia'),
               Row(
@@ -64,20 +77,31 @@ class _EstadoTabla extends State<Tabla> {
                 spacing: 20,
                 children: [
                   Text("$asistencias"),
-                  ElevatedButton(onPressed: _reiniciarEstado, child: Icon(Icons.cancel))
-                ]
+                  ElevatedButton(
+                    onPressed: _reiniciarEstado,
+                    child: Icon(Icons.cancel),
+                  ),
+                  ElevatedButton(
+                    onPressed: _marcarTodos,
+                    child: Icon(Icons.check),
+                  ),
+                ],
               ),
-            ]),
-            Expanded(
-            child:ListView.builder(
+            ],
+          ),
+          Expanded(
+            child: ListView.builder(
               itemCount: widget.estudiantes.length,
               itemBuilder: (context, indice) {
-                return LineaEstudiante(estudiante: widget.estudiantes[indice], onAsistenciaCambiada: _refrescarEstado,);//revisar
+                return LineaEstudiante(
+                  estudiante: widget.estudiantes[indice],
+                  onAsistenciaCambiada: _refrescarEstado,
+                ); //revisar
               },
             ),
-            )
-          ],
-        )
-      );
+          ),
+        ],
+      ),
+    );
   }
 }
