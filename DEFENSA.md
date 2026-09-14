@@ -28,6 +28,15 @@ Se extrajo `LineaEstudiante` porque cada registro tiene una responsabilidad espe
 
 Si se hubiera utilizado, por ejemplo, un método en lugar de una clase, siempre se podría ver la fila, pero esta no tendría su propio ciclo de vida ni un estado independiente para llamar a `setState`. Por esto, el cambio tendría que manejarse desde `Tabla`, y esto traería como consecuencia la aparición de más reconstrucciones y una mezcla de responsabilidades.
 
+## Resultados de `flutter analyze`
+
+```bash
+flutter analyze
+PS ~\controlador_de_asistencia> flutter analyze
+Analyzing controlador_de_asistencia...                                  
+No issues found! (ran in 2.9s)
+```
+
 ## Declaración de uso de inteligencia artificial
 
 Durante esta sesión, se consultó a la inteligencia artificial `Claude` únicamente para resolver dudas de sintaxis puntuales sobre los widgets `Row`, `Expanded` y `Column`.
