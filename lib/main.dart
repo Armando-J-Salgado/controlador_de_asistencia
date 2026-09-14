@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Yawi',
       theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.indigoAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigoAccent),
       ),
       home: const MyHomePage(title: 'Yawi'),
     );
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25,vertical:10),
+        padding: const EdgeInsets.symmetric(horizontal: 10,vertical:8),
         child: Tabla(estudiantes: estudiantes)),
     );
   }

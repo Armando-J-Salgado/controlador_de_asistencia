@@ -66,28 +66,58 @@ class _EstadoTabla extends State<Tabla> {
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 5,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('Asistencia'),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                spacing: 20,
+          Card(
+            margin: const EdgeInsets.only(bottom: 8),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
                 children: [
-                  Text("$asistencias"),
-                  ElevatedButton(
-                    onPressed: _reiniciarEstado,
-                    child: Icon(Icons.cancel),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Expanded(
+                        child: Text(
+                          'NUESTRO EQUIPO',
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            '$asistencias / ${widget.estudiantes.length} presentes',
+                            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12),
+                          ),
+                        ),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: _marcarTodos,
-                    child: Icon(Icons.check),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          onPressed: _marcarTodos,
+                          icon: const Icon(Icons.check_circle_outline, size: 16),
+                          label: const Text('Marcar todos', style: TextStyle(fontSize: 12)),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          onPressed: _reiniciarEstado,
+                          icon: const Icon(Icons.restart_alt, size: 16),
+                          label: const Text('Restablecer', style: TextStyle(fontSize: 12)),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
           Expanded(
             child: ListView.builder(
