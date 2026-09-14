@@ -18,21 +18,33 @@ class _EstadoLineaEstudiante extends State<LineaEstudiante> {
     widget.onAsistenciaCambiada();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("${widget.estudiante}")
-          ],),
-          Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            ElevatedButton(onPressed: _marcarAsistencia, child: widget.estudiante.asistencia ? Icon(Icons.check) : Icon(Icons.cancel))
-          ],)
-        ],
+@override
+Widget build(BuildContext context) {
+  return Center(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${widget.estudiante}",
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
-      );
-  }
+        ElevatedButton(
+          onPressed: _marcarAsistencia,
+          child: widget.estudiante.asistencia
+              ? const Icon(Icons.check)
+              : const Icon(Icons.cancel),
+        ),
+      ],
+    ),
+  );
+}
 }
